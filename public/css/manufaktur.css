@@ -1,0 +1,13 @@
+.autocomplete {
+    position: relative;
+}
+
+.autocomplete ul li {
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.autocomplete ul li:hover {
+    background-color: lightblue;
+}
