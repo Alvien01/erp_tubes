@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_produk';
     protected $table = 'tb_produk';
+    protected $primaryKey = 'id_produk';
     protected $fillable =  ['nama_produk', 'biaya_produksi', 'harga_produksi', 'internal_referensi', 'id_kategori', 'barcode', 'gambar_produk'];
 
 
@@ -22,10 +22,10 @@ class Produk extends Model
     {
         return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
     }
-    public function produk()
-    {
-        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
-    }
+    // public function produk()
+    // {
+    //     return $this->belongsTo(Produk::class, 'id_produk ', 'id_produk ');
+    // }
 
     public function orders()
     {

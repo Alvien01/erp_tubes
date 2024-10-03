@@ -58,29 +58,22 @@
     <!-- Navbar -->
     <header id="header" class="header fixed-top d-flex align-items-center bg-primary">
 
-        {{-- <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ url('dashboard')}}" class="logo d-flex align-items-center">
-                <img src="" alt="">
-                <span class="d-none d-lg-block text-light">Logo.</span>
-            </a>
-            <i class="bi bi-list toggle-sidebar-btn text-light"></i>
-        </div><!-- End Logo --> --}}
         <div class="d-flex align-items-center justify-content-between">
+        <i class="bi bi-list toggle-sidebar-btn text-light"></i>
             <a href="{{ url('dashboard') }}" class="logo d-flex align-items-center">
                 <!-- <img src="{{ asset('images/pc.jpg') }}" alt="ERP Logo" width="250" height="100"> -->
                 <span class="d-none d-lg-block text-light"></span>
             </a>
-            <i class="bi bi-list toggle-sidebar-btn text-light"></i>
         </div><!-- End Logo -->
 
 
-
+<!-- 
         <div class="search-bar">
             <form class="search-form d-flex align-items-center" method="POST" action="#">
                 <input type="text" name="query" placeholder="Search" title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
-        </div><!-- End Search Bar -->
+        </div> -->
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -116,7 +109,7 @@
     <!-- End Navbar -->
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar bg-dark">
+    <aside id="sidebar" class="sidebar bg-primary">
         <ul class="sidebar-nav" id="sidebar-nav">
 
             {{-- Dashboard --}}
@@ -127,6 +120,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <br>
 
             {{-- Manufaktur --}}
             <li class="nav-item ">
@@ -135,7 +129,7 @@
                     <i class="bi bi-menu-button-wide"></i><span>Manufaktur</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-
+                <br>
                 <ul id="manufaktur-nav"
                     class="nav-content {{ request()->is('manufaktur/produk*') || request()->is('manufaktur/bahan*') || request()->is('manufaktur/create-produk*') || request()->is('manufaktur/create-bahan*') || request()->is('manufaktur/create-bom*') || request()->is('manufaktur/bom*') || request()->is('manufaktur/detail-bom*') ? 'collapse show' : 'collapse' }}"
                     data-bs-parent="#sidebar-nav">
@@ -145,12 +139,15 @@
                             class="{{ request()->is('manufaktur/produk*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Produk</span>
                         </a>
+                        <br>
                     </li>
+                    <br>
                     <li>
                         <a href="{{ url('/manufaktur/bahan') }}"
                             class="{{ request()->is('manufaktur/bahan*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Bahan</span>
                         </a>
+                        <br>
                     </li>
 
                     <li>
@@ -313,10 +310,7 @@
     <!-- Footer -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>DESSERT</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            &copy; Copyright <strong><span>Alfin Ardiansyah</span></strong>. All Rights Reserved
         </div>
     </footer>
     <!-- End Footer -->
