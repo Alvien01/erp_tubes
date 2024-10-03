@@ -9,6 +9,8 @@ use App\Models\Produk;
 use App\Models\Bahan;
 use App\Models\Bom;
 use GuzzleHttp\Handler\Proxy;
+use Illuminate\Support\Facades\DB;
+
 
 class BomController extends Controller
 {

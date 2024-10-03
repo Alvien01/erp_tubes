@@ -14,6 +14,7 @@
                     {{-- REDIREK TOK --}}
                     {{-- <a href="{{ route('detail-bom') }}" class="btn btn-primary btn-sm">Struktur Biaya</a> --}}
                     {{-- Save karo Redirek --}}
+                    <a href="{{route('manufaktur.bom')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
                     <button type="submit" class="btn btn-primary btn-sm" id="strukturBiayaButton">Struktur Biaya</button>
 
                 </div>

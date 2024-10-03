@@ -139,15 +139,12 @@
                             class="{{ request()->is('manufaktur/produk*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Produk</span>
                         </a>
-                        <br>
                     </li>
-                    <br>
                     <li>
                         <a href="{{ url('/manufaktur/bahan') }}"
                             class="{{ request()->is('manufaktur/bahan*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Bahan</span>
                         </a>
-                        <br>
                     </li>
 
                     <li>
@@ -189,7 +186,7 @@
                     <i class="bi bi-menu-button-wide"></i><span>Purchasing</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-
+                <br>
                 <ul id="purchase-nav"
                     class="nav-content {{ request()->is('purchase/vendor*') || request()->is('purchase/rfq*') || request()->is('purchase/bill*') || request()->is('purchase/pembayaran-bill*') ? 'collapse show' : 'collapse' }}"
                     data-bs-parent="#sidebar-nav">
@@ -227,7 +224,7 @@
                     <i class="bi bi-menu-button-wide"></i><span>Sales</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-
+                <br>
                 <ul id="sales-nav"
                     class="nav-content {{ request()->is('sales/customer*') ? 'collapse show' : 'collapse' }}"
                     data-bs-parent="#sidebar-nav">

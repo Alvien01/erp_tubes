@@ -10,6 +10,7 @@
     @endphp
     <div class="card mx-auto my-5" style="max-width: 70rem;">
         <div class="card-header text-center fw-bold fs-2 text-black">Bills of Materials</div>
+        <a href="{{route('manufaktur.bom')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
         <div class="card-body">
             <div class="row p-2 mt-2">
                 <div class="col-sm-6 col-md-8">
@@ -63,7 +64,7 @@
                         ?>
                         @foreach (json_decode($bom->nama_bahan, true) as $index => $namaBahan)
                             <?php
-                            $biayaBahan = \DB::table('tb_bahan')
+                            $biayaBahan =\Illuminate\Support\Facades\DB::table('tb_bahan')
                                 ->where('nama_bahan', $namaBahan)
                                 ->value('biaya_bahan');
                             $decode = json_decode($bom->jumlah_bahan, true)[$index];
@@ -88,7 +89,7 @@
                             <td>{{ json_decode($bom->jumlah_bahan, true)[$index] }}</td>
                             <td>
                                 <?php
-                                $biayaBahan = \DB::table('tb_bahan')
+                                $biayaBahan =\Illuminate\Support\Facades\DB::table('tb_bahan')
                                     ->where('nama_bahan', $namaBahan)
                                     ->value('biaya_bahan');
                                 $decode = json_decode($bom->jumlah_bahan, true)[$index];
@@ -99,7 +100,7 @@
                             </td>
                             <td>
                                 <?php
-                                $biayaBahan = \DB::table('tb_bahan')
+                                $biayaBahan = \Illuminate\Support\Facades\DB::table('tb_bahan')
                                     ->where('nama_bahan', $namaBahan)
                                     ->value('biaya_bahan');
                                 $decode = json_decode($bom->jumlah_bahan, true)[$index];

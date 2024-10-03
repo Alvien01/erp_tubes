@@ -8,6 +8,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Produk</h5>
+            <a href="{{route('manufaktur.produk')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
             <form class="row g-3" method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @csrf
