@@ -43,7 +43,8 @@ Route::get('/sidebar', function () {
 
 // Manufaktur Bahan
 Route::get('/manufaktur/bahan', [BahanController::class, 'index'])->name('manufaktur.bahan');
-Route::get('/manufaktur/create-bahan', [BahanController::class, 'create'])->name('manufaktur.create');
+// Route::get('/manufaktur/create-bahan', [BahanController::class, 'create'])->name('manufaktur.create');
+Route::get('/manufaktur/create-bahan', [BahanController::class, 'create'])->name('manufaktur.create-bahan');
 Route::get('/manufaktur/bahan-detail/{id}', [BahanController::class, 'show'])->name('manufaktur.bahan-detail');
 Route::get('/manufaktur/bahan/update/{id}', [BahanController::class, 'edit'])->name('manufaktur.bahan-update');
 Route::put('/manufaktur/bahan/update/{id}', [BahanController::class, 'update'])->name('manufaktur.bahan-update');

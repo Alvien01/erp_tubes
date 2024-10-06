@@ -14,7 +14,12 @@
     @endif
     <div class="card mx-auto my-5" style="max-width: 50rem;">
         <div class="card-header text-center fw-bold fs-2 text-black">Detail Bahan</div>
-        <a href="{{route('manufaktur.bahan')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+        <br>
+            <div class="col-12 text-end mb-3">
+                <a href="{{ route('manufaktur.bahan') }}" class="btn btn-warning btn-sm me-2">Back</a>
+            </div>
+
+
         <div class="card-body">
             <div class="row p-2 mt-2">
                 <div class="col-sm-6 col-md-8">

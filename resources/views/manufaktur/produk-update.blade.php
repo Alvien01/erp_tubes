@@ -22,6 +22,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Produk</h5>
+    <a href="{{route('manufaktur.produk')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
             <form action="{{ route('manufaktur.produk-update', ['id' => $produk->id_produk]) }}" method="POST"
                 enctype="multipart/form-data" class="row g-3">
                 @csrf

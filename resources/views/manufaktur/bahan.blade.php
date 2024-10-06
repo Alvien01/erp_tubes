@@ -14,6 +14,12 @@
         </div>
     @endif
     <div class="row">
+        <br>
+    <div class="col-12 text-right mb-3">
+        <a href="{{ route('manufaktur.create-bahan') }}" class="btn btn-primary btn-sm-3">Tambah Bahan</a>
+    </div>
+    <br>
+    <!-- <a href="{{ route('manufaktur.create') }}" class="btn btn-primary btn-sm ml-auto">Tambah Bahan</a> -->
         @foreach ($bahan as $bahanItem)
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{ route('manufaktur.bahan-detail', ['id' => $bahanItem->id_bahan]) }}">
