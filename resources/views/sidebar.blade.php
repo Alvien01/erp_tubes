@@ -249,37 +249,8 @@
                             <i class="bi bi-circle"></i><span>Orders</span>
                         </a>
                     </li>
-
-                    {{-- <li>
-                        <a href="{{ url('/purchase/rfq') }}"
-                            class="{{ request()->is('purchase/rfq*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Request for Quotation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/purchase/bill') }}"
-                            class="{{ request()->is('purchase/bill*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Bill</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/purchase/pembayaran-bill') }}"
-                            class="{{ request()->is('purchase/pembayaran-bill*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Data Pembayaran</span>
-                        </a>
-                    </li> --}}
                 </ul>
             </li>
-
-            {{-- Menu --}}
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('dashboard*') ? '' : 'collapsed' }}"
-                    href="{{ url('dashboard') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>Menu</span>
-                </a>
-            </li>
-
         </ul>
     </aside>
 

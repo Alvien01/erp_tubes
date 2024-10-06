@@ -27,9 +27,9 @@
     </div>
     <div class="col-md-3">
     <div class="card text-bg-light mb-3 " style="max-width: 18rem;">
-          <div class="card-header">Pelanggan</div>
+          <div class="card-header">Bahan</div>
           <div class="card-body">
-            <h5 class="card-title">Jumlah Pelanggan</h5>
+            <h5 class="card-title">Jumlah Bahan</h5>
             <p class="card-text"></p>
           </div>
         </div>
@@ -37,9 +37,9 @@
   </div>
   <div class="col-md-3">
       <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-          <div class="card-header">Transaksi</div>
+          <div class="card-header">BoM</div>
           <div class="card-body">
-            <h5 class="card-title">Jumlah Transaksi</h5>
+            <h5 class="card-title">Jumlah BoM</h5>
             <p class="card-text"></p>
           </div>
         </div>
