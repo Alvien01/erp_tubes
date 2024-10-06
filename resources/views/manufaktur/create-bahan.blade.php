@@ -8,6 +8,9 @@
     <div class="card">
         <div class="card-body pt-4">
             <h5 class="card-title">Bahan Baku</h5>
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('manufaktur.bahan')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
             <form class="row g-3" action="{{ route('stores') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="">
