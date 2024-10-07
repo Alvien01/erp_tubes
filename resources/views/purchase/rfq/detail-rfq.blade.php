@@ -11,6 +11,9 @@
     <div class="card mx-auto my-5" style="max-width: 70rem;">
         <div class="card-header">
             <div class="text-center fw-bold fs-2 text-black">RFQ</div>
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('purchase.rfq')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
             <div class="text-end fw-medium fs-5 text-black">Status : {{ $rfq->status ?? 'Status Not Available' }}</div>
 
             <div class="text-end mt-2">

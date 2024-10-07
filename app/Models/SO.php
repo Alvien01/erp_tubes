@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class SO extends Model
 {
+    use HasFactory;
     protected $table = 'tb_sales_order';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'id_quotation',
-        'customer',
+        'id_customer_individual ',
         'expiration',
         'nama_produk',
         'jumlah',
@@ -25,8 +26,4 @@ class SO extends Model
     {
         return $this->belongsTo(quotation::class, 'id');
     }
-    // public function bahan()
-    // {
-    //     return $this->belongsTo(Bahan::class, 'id_bahan', 'id_bahan');
-    // }
 }

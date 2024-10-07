@@ -9,7 +9,7 @@ class Quotation extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'tb_quotation';
-    protected $fillable =  ['customer', 'expiration', 'payment_terms', 'nama_produk', 'jumlah', 'satuan_biaya', 'total_biaya', 'status'];
+    protected $fillable =  ['id_customer_indivudal', 'expiration', 'payment_terms', 'nama_produk', 'jumlah', 'satuan_biaya', 'total_biaya', 'status'];
     public $timestamps = false;
 
     use HasFactory;

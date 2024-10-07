@@ -89,26 +89,7 @@
             });
         });
     </script>
-    {{-- <script>
-        $(document).ready(function () {
-            // Inisialisasi Select2 pada elemen dengan id_bom
-            $('#id').select2({
-                ajax: {
-                    url: '{{ route('SO.search') }}', // Ganti dengan rute pencarian yang sesuai
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                },
-                placeholder: '- Pilih Quotation -',
-                minimumInputLength: 1 // Atur jumlah karakter minimal sebelum pencarian dimulai
-            });
-        });
-    </script> --}}
+   
     <!-- Tambahkan script untuk menangani perubahan pada elemen select -->
     <script>
     $(document).ready(function () {

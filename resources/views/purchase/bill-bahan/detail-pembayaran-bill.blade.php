@@ -11,7 +11,11 @@
     <div class="card mx-auto my-5" style="max-width: 70rem;">
         <div class="card-header">
             <div class="text-center fw-bold fs-2 text-black">Pembayaran</div>
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('purchase.rfq')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
         </div>
+        
 
         <div class="card-body">
             <div class="row p-2 mt-2">

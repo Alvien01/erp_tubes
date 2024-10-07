@@ -9,6 +9,9 @@ use App\Models\Quotation;
 use App\Models\CustomerCompany;
 use App\Models\CustomerIndividual;
 use App\Models\SO;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Bom;
 
 class SOController extends Controller
 {
@@ -126,11 +129,11 @@ class SOController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($i)
+    public function edit($id)
     {
         // Ambil data order berdasarkan ID
         $SO = SO::find($id);
-        $quotationList = Quotatiob::all();
+        $quotationList = Quotation::all();
 
 
         // Jika order tidak ditemukan, redirect atau berikan respons sesuai kebutuhan
