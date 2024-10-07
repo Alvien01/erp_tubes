@@ -55,7 +55,7 @@ Route::post('stores', [BahanController::class, 'store'])->name('stores');
 
 // Manufaktur Produk
 Route::get('/manufaktur/produk', [ProdukController::class, 'index'])->name('manufaktur.produk');
-Route::get('/manufaktur/create-produk', [ProdukController::class, 'create'])->name('create-produk');
+Route::get('/manufaktur/create-produk', [ProdukController::class, 'create'])->name('manufaktur.create-produk');
 Route::get('/manufaktur/produk-detail/{id}', [ProdukController::class, 'show'])->name('manufaktur.produk-detail');
 Route::get('/manufaktur/produk-update/{id}', [ProdukController::class, 'edit'])->name('manufaktur.produk-update');
 Route::put('/manufaktur/produk-update/{id}', [ProdukController::class, 'update'])->name('manufaktur.produk-update');
