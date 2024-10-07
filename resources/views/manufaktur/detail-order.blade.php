@@ -13,6 +13,9 @@
             <div class="text-center fw-bold fs-2 text-black">Order</div>
             <div class="text-end fw-medium fs-5 text-black">Status : {{ $order->status }}</div>
             <div class="text-end mt-2">
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('manufaktur.order')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
                 {{-- ORI ISO UTEK UTEK --}}
                 {{-- <form action="{{ route('konfirmasi.order', ['id_order' => $order->id_order]) }}" method="post" style="display:inline;">
                     @csrf

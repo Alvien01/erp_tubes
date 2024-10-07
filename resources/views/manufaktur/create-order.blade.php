@@ -11,6 +11,9 @@
             @csrf
             <div class="mb-3">
                 <label for="nama_produk" class="form-label">Nama Produk</label>
+                <div class="col-12 text-end mb-3">
+                    <a href="{{route('manufaktur.order')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
                 <select class="form-select" id="nama_produk" name="nama_produk" required
                     onchange="setProductId(this.options[this.selectedIndex].getAttribute('data-text'))">
                     <option value="">Pilih Produk</option>

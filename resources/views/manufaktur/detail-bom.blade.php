@@ -9,8 +9,10 @@
         use Carbon\Carbon;
     @endphp
     <div class="card mx-auto my-5" style="max-width: 70rem;">
-        <div class="card-header text-center fw-bold fs-2 text-black">Bills of Materials</div>
-        <a href="{{route('manufaktur.bom')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+        <div class="card-header text-center fw-bold fs-2 text-black mb-3">Bills of Materials</div>
+        <div class="mb-3 d-flex justify-content-end pe-3">
+            <a href="{{route('manufaktur.bom')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
         <div class="card-body">
             <div class="row p-2 mt-2">
                 <div class="col-sm-6 col-md-8">

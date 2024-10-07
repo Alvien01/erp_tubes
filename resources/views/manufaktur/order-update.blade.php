@@ -10,6 +10,9 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('manufaktur.order')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
                 <label for="nama_produk" class="form-label">Nama Produk</label>
                 <select class="form-select" id="nama_produk" name="nama_produk" required
                     onchange="setProductId(this.options[this.selectedIndex].getAttribute('data-text'))">
@@ -59,26 +62,6 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    {{-- <script>
-    $(document).ready(function () {
-        // Inisialisasi Select2 pada elemen dengan id_bom
-        $('#id_bom').select2({
-            ajax: {
-                url: '{{ route('order.search') }}', // Ganti dengan rute pencarian yang sesuai
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
-            },
-            placeholder: '- Pilih BOM -',
-            minimumInputLength: 1 // Atur jumlah karakter minimal sebelum pencarian dimulai
-        });
-    });
-</script> --}}
 
     <!-- Tambahkan jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

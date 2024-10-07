@@ -15,6 +15,9 @@
                 </div>
             @endif
             <h5 class="card-title">Bahan Baku</h5>
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('manufaktur.bahan')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
             <form class="row g-3" action="{{ route('manufaktur.bahan-update', ['id' => $bahan->id_bahan]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
