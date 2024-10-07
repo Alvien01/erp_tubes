@@ -8,6 +8,9 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Vendor</h5>
+            <div class="col-12 text-end mb-3">
+                    <a href="{{route('vendor.index')}}" class="btn btn-warning btn-sm ml-auto">Back</a>
+                </div>
             <form class="row g-3" method="POST" action="{{ route('company.update', $company->id) }}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @method('PUT')
