@@ -117,7 +117,7 @@
                 <a class="nav-link {{ request()->is('dashboard*') ? '' : 'collapsed' }}"
                     href="{{ url('dashboard') }}">
                     <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
+                    <strong><span>Dashboard</span></strong>
                 </a>
             </li>
             <br>
@@ -126,7 +126,7 @@
             <li class="nav-item ">
                 <a class="nav-link {{ request()->is('manufaktur/produk*') || request()->is('manufaktur/bahan*') || request()->is('manufaktur/create-produk*') || request()->is('manufaktur/create-bom*') || request()->is('manufaktur/bom*') || request()->is('manufaktur/create-bahan*') || request()->is('manufaktur/detail-bom*') ? '' : 'collapsed' }}"
                     data-bs-target="#manufaktur-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Manufaktur</span><i
+                    <i class="bi bi-menu-button-wide"></i><strong><span>Manufaktur</span></strong><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <br>
@@ -137,17 +137,17 @@
                     <li>
                         <a href="{{ url('/manufaktur/produk') }}"
                             class="{{ request()->is('manufaktur/produk*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Data Produk</span>
+                            <i class="bi bi-circle"></i><strong><span>Data Produk</span></strong>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/manufaktur/bahan') }}"
                             class="{{ request()->is('manufaktur/bahan*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Data Bahan</span>
+                            <i class="bi bi-circle"></i><strong><span>Data Bahan</span></strong>
                         </a>
                     </li>
 
-                    <li>
+                    <!-- <li>
                         <a href="{{ url('manufaktur/create-produk') }}"
                             class="{{ request()->is('manufaktur/create-produk*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Tambah Produk</span>
@@ -158,19 +158,19 @@
                             class="{{ request()->is('manufaktur/create-bahan*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Tambah Bahan</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ url('manufaktur/bom') }}"
                             class="{{ request()->is('manufaktur/bom*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>BoM</span>
+                            <i class="bi bi-circle"><strong></i><span>BoM</span></strong>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{ url('manufaktur/create-bom') }}"
                             class="{{ request()->is('manufaktur/create-bom*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Tambah BoM</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ url('manufaktur/order') }}"
                             class="{{ request()->is('manufaktur/order*') ? 'active' : '' }}">
@@ -183,7 +183,7 @@
             <li class="nav-item ">
                 <a class="nav-link {{ request()->is('purchase/vendor*') ? '' : 'collapsed' }}"
                     data-bs-target="#purchase-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Purchasing</span><i
+                    <i class="bi bi-menu-button-wide"></i><strong><span>Purchasing</span></strong><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <br>
@@ -194,25 +194,25 @@
                     <li>
                         <a href="{{ url('/purchase/vendor') }}"
                             class="{{ request()->is('purchase/vendor*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Vendor</span>
+                            <i class="bi bi-circle"></i><strong><span>Vendor</span></strong>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/purchase/rfq') }}"
                             class="{{ request()->is('purchase/rfq*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Request for Quotation</span>
+                            <i class="bi bi-circle"></i><strong><span>Request for Quotation</span></strong>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/purchase/bill') }}"
                             class="{{ request()->is('purchase/bill*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Bill</span>
+                            <i class="bi bi-circle"></i><strong><span>Bill</span></strong>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/purchase/pembayaran-bill') }}"
                             class="{{ request()->is('purchase/pembayaran-bill*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Data Pembayaran</span>
+                            <i class="bi bi-circle"></i><strong><span>Data Pembayaran</span></strong>
                         </a>
                     </li>
                 </ul>
@@ -221,7 +221,7 @@
             <li class="nav-item ">
                 <a class="nav-link {{ request()->is('sales/customer*') ? '' : 'collapsed' }}"
                     data-bs-target="#sales-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Sales</span><i
+                    <i class="bi bi-menu-button-wide"></i><strong><span>Sales</span></strong><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <br>
@@ -232,21 +232,21 @@
                     <li>
                         <a href="{{ url('/sales/customer') }}"
                             class="{{ request()->is('sales/customer*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Customer</span>
+                            <i class="bi bi-circle"></i><strong><span>Customer</span></strong>
                         </a>
                     </li>
 
                     <li>
                         <a href="{{ url('/sales/quotation') }}"
                             class="{{ request()->is('sales/quotation*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Quotation</span>
+                            <i class="bi bi-circle"></i><strong><span>Quotation</span></strong>
                         </a>
                     </li>
 
                     <li>
                         <a href="{{ url('/sales/order') }}"
                             class="{{ request()->is('sales/order*') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Orders</span>
+                            <i class="bi bi-circle"></i><strong><span>Orders</span></strong>
                         </a>
                     </li>
                 </ul>

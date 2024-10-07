@@ -75,22 +75,26 @@ Route::get('/get-bom', [BomController::class, 'getBom'])->name('get-bom');
 Route::get('/manufaktur/bom-cetak/{id}', [BomController::class, 'cetak'])->name('manufaktur.bom-cetak');
 
 Route::get('/manufaktur/bom', [BomController::class, 'index'])->name('manufaktur.bom');
-//Tampilan tok ganok data e
-Route::get('/manufaktur/detail-bom', function () {
-    return view('manufaktur.detail-bom');
-})->name('detail-bom');
-Route::post('/manufaktur/simpan-bom', [BomController::class, 'simpanBOM'])->name('manufaktur.simpan-bom');
-//anyar nizar kamis 26
-Route::get('/manufaktur/detail-bom/{id_bom}', [BomController::class, 'indexdetail'])->name('manufaktur.detail-bom');
-// Manufaktur/Bom sesuai id_bom gawe nang detail-bom
+
+// Menampilkan detail BoM
+Route::get('/manufaktur/bom', [BomController::class, 'index'])->name('manufaktur.bom');
+
+// Route untuk menampilkan detail BoM berdasarkan ID
 Route::get('/manufaktur/detail-bom/{id_bom}', [BomController::class, 'detailbom'])->name('manufaktur.detail-bom');
 
-//CRUD
-Route::get('/manufaktur/create-bom', [BomController::class, 'create'])->name('create-bom');
-Route::post('manufaktur/simpan-bom', [BomController::class, 'simpanBom'])->name('simpan-bom');
+// Route::post('/manufaktur/simpan-bom', [BomController::class, 'simpanBOM'])->name('manufaktur.simpan-bom');
+Route::post('/manufaktur/simpan-bom', [BomController::class, 'simpanBom'])->name('simpan-bom');
+
+// Route untuk menambahkan BoM
+Route::get('/manufaktur/create-bom', [BomController::class, 'create'])->name('manufaktur.create-bom');
+
+// Route untuk mengedit BoM
 Route::get('/manufaktur/edit-bom/{id_bom}', [BomController::class, 'editBom'])->name('manufaktur.bom-update');
-Route::get('/manufaktur/bom-update/{id_bom}', [BomController::class, 'editBom'])->name('manufaktur.bom-update');
+
+// Route untuk mengupdate BoM
 Route::put('/manufaktur/bom-update/{id_bom}', [BomController::class, 'updateBom'])->name('manufaktur.bom-update');
+
+// Route untuk menghapus BoM
 Route::delete('/manufaktur/bom-detail/{id}', [BomController::class, 'destroy'])->name('manufaktur.bom-detail.destroy');
 
 //Edit njopok data option value
