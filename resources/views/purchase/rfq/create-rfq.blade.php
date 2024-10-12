@@ -49,8 +49,8 @@
                     <select class="form-select form-control-sm" id="produk" name="produk" required>
                         <option value="">- Pilih Produk -</option>
 
-                        @foreach ($bahan as $item)
-                            <option value="{{ $item->nama_bahan }}">{{ $item->nama_bahan }}</option>
+                        @foreach ($produk as $item)
+                            <option value="{{ $item->nama_produk }}">{{ $item->nama_produk }}</option>
                         @endforeach
                     </select>
                 </div>

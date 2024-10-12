@@ -11,7 +11,8 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produk = Produk::all();
+        // $produk = Produk::all();
+        $produk = Produk::orderBy('created_at', 'asc')->paginate(6);
 
         // Ambil jumlah_produk dari relasi
         $orderQuantities = $produk->map(function ($product) {

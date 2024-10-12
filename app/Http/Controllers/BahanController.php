@@ -16,7 +16,8 @@ class BahanController extends Controller
     public function index()
     {
         // Mendapatkan data bahan
-        $bahan = Bahan::all();
+        // $bahan = Bahan::all();
+        $bahan = Bahan::orderBy('created_at', 'asc')->paginate(6);
         $order = Order::all();
     
         // Menambahkan data jumlah_bahan_on_hand dari tb_order ke setiap objek bahan

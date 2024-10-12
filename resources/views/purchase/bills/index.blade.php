@@ -32,7 +32,7 @@
                     <th scope="col" class="text-center">Vendor</th>
                     <th scope="col" class="text-center">Total</th>
                     <th scope="col" class="text-center">Status</th>
-                    <th scope="col" class="text-center">Aksi</th>
+                    <th scope="col" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                             <td class="text-center"> {{ $billItem->total_biaya }}</td>
                             <td class="text-center"> {{ $billItem->status }}</td>
                             <td class="text-center">
-                                <a href="{{ route('bills.show', ['id_bills' => $billItem->id_bills]) }}">Detail</a> 
+                                <a href="{{ route('bills.show', ['id_bills' => $billItem->id_bills]) }}"class="btn btn-success">Detail</a> 
                                 {{-- <a href="{{ route('manufaktur.edit', ['id_order' => $orderItem->id_order]) }}">Edit</a>  --}}
                             </td>
                         </tr>

@@ -12,13 +12,15 @@ use App\Models\CustomerIndividual;
 use App\Models\CustomerCompany;
 class DashboardController extends Controller
 {
-    public function index() {
-        $produk = Produk::count();
-        $order = Order::count();
-        $bahan = Bahan::count();
-        $bom = Bom::count();
-        
-        return view('dashboard', compact('produk', 'order', 'bahan', 'bom'));
-    }
+    public function index()
+{
+    $produk = Produk::count(); // Atau metode lain untuk mendapatkan jumlah produk
+    $order = Order::count();
+    $bahan = Bahan::count();
+    $bom = Bom::count();
+
+    return view('dashboard', compact('produk', 'order', 'bahan', 'bom'));
+}
+
     
 }

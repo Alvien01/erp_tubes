@@ -31,7 +31,7 @@
                     <th scope="col" class="text-center">Tanggal Akuntansi</th>
                     <th scope="col" class="text-center">Jumlah Pembayaran</th>
                     <th scope="col" class="text-center">Tanggal Pembayaran</th>
-                    <th scope="col" class="text-center">Aksi</th>
+                    <th scope="col" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +44,7 @@
                             <td class="text-center">{{ $billItem->jumlah_pembayaran }}</td>
                             <td class="text-center"> {{ $billItem->payment_date }}</td>
                             <td class="text-center">
-                                <a href="{{ route('payment.show', ['id_pembayaran_bill' => $billItem->id_pembayaran_bill]) }}">Detail</a> 
+                                <a href="{{ route('payment.show', ['id_pembayaran_bill' => $billItem->id_pembayaran_bill]) }}" class="btn btn-success">Detail</a> 
                                 {{-- <a href="{{ route('manufaktur.edit', ['id_order' => $orderItem->id_order]) }}">Edit</a>  --}}
                             </td>
                         </tr>

@@ -63,7 +63,7 @@ class rfqController extends Controller
         $rfq->nama_vendor = $request->input('vendor');
         $rfq->referensi_vendor = $request->input('referensi_vendor');
         $rfq->deadline_order = $request->input('deadline_order');
-        $rfq->bahan = $request->input('produk');
+        $rfq->produk = $request->input('produk');
         $rfq->jumlah_bahan = $request->input('jumlah');
         $rfq->satuan_biaya = $request->input('biaya');
         $rfq->total_biaya = $totalBiaya;

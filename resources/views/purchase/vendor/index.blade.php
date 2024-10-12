@@ -27,7 +27,7 @@
                     <div class="card mb-3" style="max-width:540px;">
                         <div class="row g-0">
                             {{-- Add your image display code here if needed --}}
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title m-0">
                                         {{ $vendor->nama }} <br>
@@ -37,11 +37,11 @@
                                             Company
                                         @endif
                                     </h5>
-                                    <p class="card-text m-0">{{ $vendor->posisi_pekerjaan }} </p>
-                                    <p class="card-text m-0">{{ $vendor->nama_perusahaan }} </p>
-                                    <p class="card-text m-0">{{ $vendor->telp }} </p>
-                                    <p class="card-text m-0">{{ $vendor->alamat }} </p>
-                                    <p class="card-text m-0">{{ $vendor->email }} </p>
+                                    <p class="card-text m-0">Posisi Pekerjaan : {{ $vendor->posisi_pekerjaan }} </p>
+                                    <p class="card-text m-0">Nama Perusahaan : {{ $vendor->nama_perusahaan }} </p>
+                                    <p class="card-text m-0">Nomor Telefon : {{ $vendor->telp }} </p>
+                                    <p class="card-text m-0">Alamat : {{ $vendor->alamat }} </p>
+                                    <p class="card-text m-0">Email : {{ $vendor->email }} </p>
                     
                                 </div>
                             </div>
