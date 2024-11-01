@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Quotation;
 use App\Models\SO;
+use App\Models\Order;
+use App\Models\RFQ;
 use App\Models\CustomerCompany;
 use App\Models\CustomerIndividual;
 use Illuminate\Http\Request;
@@ -177,49 +179,95 @@ class quotationController extends Controller
         return redirect()->back()->with('success', 'Status Berhasil di Ubah !');
     }
 
+    // public function salesOrder($id)
+    // {
+    //     // Temukan RFQ berdasarkan ID
+    //     $quotation = Quotation::find($id);
+
+    //     // Jika RFQ tidak ditemukan
+    //     if (!$quotation) {
+    //         return redirect()->back()->with('error', 'Quotation tidak ditemukan.');
+    //     }
+
+    //     // Ambil semua order terkait dengan RFQ
+    //     $orders = Order::all();
+
+    //     // Jika ada order
+    //     foreach ($orders as $order) {
+    //         // Ambil bahan dan jumlah_bahan dari order
+    //         $namaBahanOrder = $order->nama_produk;
+    //         $jumlahBahanOrder = $order->jumlah_produk;
+
+    //         // Ambil bahan dan jumlah_bahan dari rfq
+    //         $bahanQuotation = $quotation->produk;
+    //         $jumlahProdukQuotation = $rfq->jumlah_produk;
+
+    //         // Periksa apakah bahan RFQ ada dalam array nama_bahan Order
+    //         $indexOrder = array_search($bahanQuotation, $namaProdukQuotation);
+
+    //         // Jika bahan RFQ ada dalam Order
+    //         if ($indexOrder !== false) {
+    //             // Tambahkan jumlah_bahan RFQ ke jumlah_bahan pada Order
+    //             $jumlahProdukQuotation[$indexOrder] += $jumlahProdukQuotation;
+    //         }
+
+    //         // Simpan perubahan pada Order
+    //         $order->jumlah_produk = $jumlahProdukQuotation;
+    //         $order->save();
+    //     }
+
+    //     // Ubah status RFQ menjadi 'Waiting Bills'
+    //     $quotation->status = 'sales order';
+    //     $quotation->save();
+
+    //     return redirect()->back()->with('success', 'Status Berhasil di Ubah!');
+    // }
     public function salesOrder($id)
     {
         // Temukan RFQ berdasarkan ID
         $quotation = Quotation::find($id);
-
+    
         // Jika RFQ tidak ditemukan
         if (!$quotation) {
             return redirect()->back()->with('error', 'Quotation tidak ditemukan.');
         }
-
+    
         // Ambil semua order terkait dengan RFQ
         $orders = Order::all();
-
+    
         // Jika ada order
         foreach ($orders as $order) {
             // Ambil bahan dan jumlah_bahan dari order
             $namaBahanOrder = $order->nama_produk;
-            $jumlahBahanOrder = $order->jumlah_produk;
-
+            $jumlahBahanOrder = $order->jumlah_produk ?? 0; // Nilai default 0 jika null
+    
             // Ambil bahan dan jumlah_bahan dari rfq
             $bahanQuotation = $quotation->produk;
-            $jumlahProdukQuotation = $rfq->jumlah_produk;
-
-            // Periksa apakah bahan RFQ ada dalam array nama_bahan Order
-            $indexOrder = array_search($bahanQuotation, $namaProdukQuotation);
-
-            // Jika bahan RFQ ada dalam Order
-            if ($indexOrder !== false) {
+            $jumlahProdukQuotation = $quotation->jumlah_produk ?? 0; // Nilai default 0 jika null
+    
+            // Periksa apakah bahan RFQ ada dalam nama_bahan Order
+            if ($bahanQuotation == $namaBahanOrder) {
                 // Tambahkan jumlah_bahan RFQ ke jumlah_bahan pada Order
-                $jumlahProdukQuotation[$indexOrder] += $jumlahProdukQuotation;
+                $jumlahProdukQuotation += $jumlahBahanOrder;
             }
-
+    
             // Simpan perubahan pada Order
-            $order->jumlah_produk = $jumlahProdukQuotation;
-            $order->save();
+            if ($jumlahProdukQuotation !== null) {
+                $order->jumlah_produk = $jumlahProdukQuotation;
+                $order->save();
+            } else {
+                return redirect()->back()->with('error', 'Jumlah produk tidak boleh kosong.');
+            }
         }
-
-        // Ubah status RFQ menjadi 'Waiting Bills'
+    
+        // Ubah status RFQ menjadi 'sales order'
         $quotation->status = 'sales order';
         $quotation->save();
-
+    
         return redirect()->back()->with('success', 'Status Berhasil di Ubah!');
     }
+    
+    
 
     public function cetak($id)
     {

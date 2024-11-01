@@ -18,6 +18,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
+
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -63,6 +64,8 @@
                     <label for="gambar_produk" class="form-label">Gambar Produk (JPG/PNG)</label>
                     <input class="form-control form-control-sm" type="file" id="gambar_produk" name="gambar_produk"
                         value="{{ $produk->gambar_produk }}">
+                    <img id="preview_gambar" src="{{ asset('storage/'.$produk->gambar_produk) }}" alt="Preview Gambar Produk" 
+                         class="img-thumbnail mt-2 rounded-circle" style="max-height: 200px;">
                 </div>
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Update</button>
@@ -70,4 +73,14 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById('gambar_produk').addEventListener('change', function(event) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview_gambar').src = e.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
 @endsection

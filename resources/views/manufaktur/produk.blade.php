@@ -20,13 +20,17 @@
         @foreach ($produk as $index => $product)
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{ route('manufaktur.produk-detail', ['id' => $product->id_produk]) }}">
-                    <div class="card mb-3" style="max-width:540px;">
-                        <div class="row g-0">
-                            <div class="m-auto col-md-4 col-sm-6 sm-m-auto text-center">
-                                @if ($product->gambar_produk)
-                                    <img src="{{ asset('images/produk/' . $product->gambar_produk) }}" alt="Gambar Produk" style="max-width: 5.5rem;">
-                                @endif
-                            </div>
+                <div class="card mb-3" style="max-width:540px;">
+    <div class="row g-0">
+        <div class="m-auto col-md-4 col-sm-6 sm-m-auto text-center">
+            @if ($product->gambar_produk)
+                <img src="{{ asset('images/produk/' . $product->gambar_produk) }}" alt="Gambar Produk" 
+                     style="width: 100%; height: 100%; object-fit: cover;">
+            @endif
+        </div>
+    </div>
+</div>
+
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title m-0">{{ $product->nama_produk }}</h5>
