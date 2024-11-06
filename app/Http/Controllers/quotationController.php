@@ -46,6 +46,32 @@ class quotationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'customer' => 'required',
+    //         'expiration' => 'required',
+    //         'nama_produk' => 'required',
+    //         'jumlah' => 'required',
+    //         'satuan_biaya' => 'required',
+    //     ]);
+
+    //     // Hitung total biaya
+    //     $totalBiaya = $request->input('jumlah') * $request->input('satuan_biaya');
+
+    //     // Buat RFQ baru
+    //     $quotation = new Quotation();
+    //     $quotation->customer = $request->input('customer');
+    //     $quotation->expiration = $request->input('expiration');
+    //     $quotation->nama_produk = $request->input('nama_produk');
+    //     $quotation->jumlah = $request->input('jumlah');
+    //     $quotation->satuan_biaya = $request->input('satuan_biaya');
+    //     $quotation->total_biaya = $totalBiaya;
+
+    //     $quotation->save();
+
+    //     return redirect()->route('sales.quotation')->with('success', 'Data Quotation berhasil ditambahkan!');
+    // }
     public function store(Request $request)
     {
         $request->validate([
@@ -55,11 +81,9 @@ class quotationController extends Controller
             'jumlah' => 'required',
             'satuan_biaya' => 'required',
         ]);
-
-        // Hitung total biaya
+    
         $totalBiaya = $request->input('jumlah') * $request->input('satuan_biaya');
-
-        // Buat RFQ baru
+    
         $quotation = new Quotation();
         $quotation->customer = $request->input('customer');
         $quotation->expiration = $request->input('expiration');
@@ -67,12 +91,13 @@ class quotationController extends Controller
         $quotation->jumlah = $request->input('jumlah');
         $quotation->satuan_biaya = $request->input('satuan_biaya');
         $quotation->total_biaya = $totalBiaya;
-
+        $quotation->status = 'pending'; // Tambahkan default 'status'
+    
         $quotation->save();
-
+    
         return redirect()->route('sales.quotation')->with('success', 'Data Quotation berhasil ditambahkan!');
     }
-
+    
 
     /**
      * Display the specified resource.
