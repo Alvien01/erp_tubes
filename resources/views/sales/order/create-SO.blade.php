@@ -12,7 +12,7 @@
             <div class="mb-3">
                 <label for="customer" class="form-label">Pilih Quotation</label>
                 <select class="form-select" id="customer" name="customer">
-                    <option value="">- Pilih Quotation -</option>
+                    <option value=""><strong>- Pilih Quotation -</strong></option>
                     @foreach ($quotationList as $quotation)
                         <option value="{{ $quotation->id }}"
                         data-id="{{ $quotation->id }}"
