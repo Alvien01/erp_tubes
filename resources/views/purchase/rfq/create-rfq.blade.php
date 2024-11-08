@@ -48,7 +48,6 @@
                     <label for="produk" class="form-label">Produk</label>
                     <select class="form-select form-control-sm" id="produk" name="produk" required>
                         <option value="">- Pilih Produk -</option>
-
                         @foreach ($produk as $item)
                             <option value="{{ $item->nama_produk }}">{{ $item->nama_produk }}</option>
                         @endforeach
