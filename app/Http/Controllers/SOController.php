@@ -11,6 +11,7 @@ use App\Models\SO;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Bom;
+use Illuminate\Support\Facades\Log;
 
 class SOController extends Controller
 {
@@ -30,7 +31,8 @@ class SOController extends Controller
 
     // Menyimpan data SO baru
     public function store(Request $request)
-    {
+{
+    try {
         // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'id_quotation' => 'required|exists:quotations,id', // Pastikan id_quotation ada di tabel quotations
@@ -48,7 +50,7 @@ class SOController extends Controller
         $tbOrder = new SO();
         $tbOrder->id_quotation = $validatedData['id_quotation'];
         $tbOrder->id_customer_individual = $validatedData['id_customer_individual'];
-        $tbOrder->id_customer_company = $validatedData['id_customer_company'];
+        $tbOrder->id_customer_company = $validatedData['id_customer_company'] ?? null; // Pastikan kolom ini nullable
         $tbOrder->customer = $validatedData['customer'];
         $tbOrder->expiration = $validatedData['expiration'];
         $tbOrder->nama_produk = $validatedData['nama_produk'];
@@ -61,7 +63,15 @@ class SOController extends Controller
 
         // Redirect ke halaman sukses
         return redirect()->route('sales.SO')->with('success', 'Data berhasil disimpan.');
+
+    } catch (\Exception $e) {
+        // Log error untuk debugging
+        \Log::error('Gagal menyimpan Sales Order: ' . $e->getMessage());
+
+        // Redirect kembali dengan pesan error
+        return redirect()->back()->withErrors('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
     }
+}
 
     // Menampilkan detail SO
     public function show($id)

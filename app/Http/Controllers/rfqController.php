@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bahan;
+use App\Models\Produk;
 use App\Models\RFQ;
 use App\Models\Order;
 use App\Models\VendorCompany;
@@ -31,11 +32,12 @@ class rfqController extends Controller
     {
 
         $bahan = Bahan::all();
+        $produk = Produk::all();
         $vendorCompany = VendorCompany::all();
         $vendorIndividual = VendorIndividual::all();
         $vendors = $vendorCompany->merge($vendorIndividual);
 
-        return view('purchase.rfq.create-rfq', compact('bahan', 'vendorCompany', 'vendorIndividual', 'vendors'));
+        return view('purchase.rfq.create-rfq', compact('bahan', 'vendorCompany', 'vendorIndividual', 'vendors', 'produk'));
     }
 
     /**

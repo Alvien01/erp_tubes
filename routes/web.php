@@ -203,7 +203,8 @@ Route::get('sales/quotation/quotation-cetak/{id}', [quotationController::class, 
 Route::get('sales/order', [SOController::class, 'index'])->name('sales.SO');
 Route::get('sales/order/create-SO', [SOController::class, 'create'])->name('SO.create');
 Route::get('sales/order/create-SO/{id}', [SOController::class, 'createWithQuotation'])->name('SO.createWithQuotation');
-Route::post('sales/order/create-SO/store', [SOController::class, 'store'])->name('SO.store');
+// Route::post('sales/order/create-SO/store', [SOController::class, 'store'])->name('SO.store');
+Route::post('/create-SO/store', [SOController::class, 'store'])->name('SO.store'); // Proses penyimpanan Sales Order
 Route::get('sales/order/detail-SO/{id}', [SOController::class, 'show'])->name('SO.show');
 Route::post('sales/order/{id}/konfirmasi', [quotationController::class, 'konfirmasi'])->name('SO.konfirmasi');
 Route::post('sales/order/{id}/nothingtobills', [quotationController::class, 'nothingToBills'])->name('SO.nothingToBills');
