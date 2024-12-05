@@ -39,7 +39,7 @@
             <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
                 <div class="card-header">BoM</div>
                 <div class="card-body">
-                    <h5 class="card-title">Banyak BoM</h5>
+                    <h5 class="card-title">Jumlah BoM</h5>
                     <p class="card-text">{{ $bom ?? 0 }}</p> <!-- Jika $produk tidak ada, tampilkan 0 -->
 
                 </div>
