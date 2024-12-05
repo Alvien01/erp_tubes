@@ -41,8 +41,8 @@
             <div class="row p-2 mt-2">
             <div class="col-7 pt-2">
                 <h5>Cetak Label</h5>
-                <h6>PT. Dessertku</h6>
-                <h6>Kota Busan</h6>
+                <h6>PT. Wikasa Muebel</h6>
+                <h6>Kota Tulungagung</h6>
             </div>
                 <div class="col-sm-6 col-md-8">
                     <p class="fw-bold m-0">Detail Sales Order</p>

@@ -30,7 +30,6 @@ class rfqController extends Controller
      */
     public function create()
     {
-
         $bahan = Bahan::all();
         $produk = Produk::all();
         $vendorCompany = VendorCompany::all();
@@ -75,7 +74,6 @@ class rfqController extends Controller
         return redirect()->route('purchase.rfq')->with('success', 'Data RFQ berhasil ditambahkan!');
     }
 
-
     /**
      * Display the specified resource.
      *
@@ -84,10 +82,15 @@ class rfqController extends Controller
      */
     public function show($id_rfq)
     {
-        $rfq = RFQ::find($id_rfq);     
+        $rfq = RFQ::find($id_rfq);
         $vendorCompany = VendorCompany::all();
         $vendorIndividual = VendorIndividual::all();
         $vendors = $vendorCompany->merge($vendorIndividual);
+        
+        if (!$rfq) {
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
+        }
+
         return view('purchase.rfq.detail-rfq', compact('rfq', 'vendors'));
     }
 
@@ -104,6 +107,11 @@ class rfqController extends Controller
         $vendorCompany = VendorCompany::all();
         $vendorIndividual = VendorIndividual::all();
         $vendors = $vendorCompany->merge($vendorIndividual);
+        
+        if (!$rfq) {
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
+        }
+
         return view('purchase.rfq.edit-rfq', compact('rfq', 'bahan', 'vendorCompany', 'vendorIndividual', 'vendors'));
     }
 
@@ -129,6 +137,11 @@ class rfqController extends Controller
         $totalBiaya = $request->input('jumlah') * $request->input('biaya');
 
         $rfq = RFQ::find($id_rfq);
+        
+        if (!$rfq) {
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
+        }
+
         $rfq->nama_vendor = $request->input('vendor');
         $rfq->referensi_vendor = $request->input('referensi_vendor');
         $rfq->deadline_order = $request->input('deadline_order');
@@ -161,76 +174,102 @@ class rfqController extends Controller
         return redirect()->route('purchase.rfq')->with('success', 'Data berhasil dihapus.');
     }
 
+    /**
+     * Konfirmasi status RFQ.
+     *
+     * @param  int  $id_rfq
+     * @return \Illuminate\Http\Response
+     */
     public function konfirmasi($id_rfq)
     {
         $rfq = RFQ::find($id_rfq);
-      
+        
+        if (!$rfq) {
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
+        }
+
         $rfq->status = 'Pesanan Pembelian';
         $rfq->save();
 
-        // Redirect back or to another page
-        return redirect()->back()->with('success', 'Status Berhasil di Ubah !');
+        return redirect()->back()->with('success', 'Status Berhasil diubah!');
     }
 
+    /**
+     * Mengubah status RFQ menjadi "Nothing To Bills".
+     *
+     * @param  int  $id_rfq
+     * @return \Illuminate\Http\Response
+     */
     public function nothingToBills($id_rfq)
     {
         $rfq = RFQ::find($id_rfq);
-      
+        
+        if (!$rfq) {
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
+        }
+
         $rfq->status = 'Nothing To Bills';
         $rfq->save();
 
-        // Redirect back or to another page
-        return redirect()->back()->with('success', 'Status Berhasil di Ubah !');
+        return redirect()->back()->with('success', 'Status Berhasil diubah!');
     }
 
+    /**
+     * Mengubah status RFQ menjadi "Waiting Bills".
+     *
+     * @param  int  $id_rfq
+     * @return \Illuminate\Http\Response
+     */
     public function waitingBills($id_rfq)
     {
-        // Temukan RFQ berdasarkan ID
         $rfq = RFQ::find($id_rfq);
-
-        // Jika RFQ tidak ditemukan
+        
         if (!$rfq) {
-            return redirect()->back()->with('error', 'RFQ tidak ditemukan.');
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
         }
 
         // Ambil semua order terkait dengan RFQ
         $orders = Order::all();
 
-        // Jika ada order
+        // Jika ada order, periksa dan update jumlah bahan
         foreach ($orders as $order) {
-            // Ambil bahan dan jumlah_bahan dari order
             $namaBahanOrder = $order->nama_bahan;
             $jumlahBahanOrder = $order->jumlah_bahan;
-
-            // Ambil bahan dan jumlah_bahan dari rfq
             $bahanRFQ = $rfq->bahan;
             $jumlahBahanRFQ = $rfq->jumlah_bahan;
 
-            // Periksa apakah bahan RFQ ada dalam array nama_bahan Order
+            // Cek apakah bahan RFQ ada dalam order
             $indexOrder = array_search($bahanRFQ, $namaBahanOrder);
 
-            // Jika bahan RFQ ada dalam Order
+            // Jika ditemukan, tambahkan jumlah bahan RFQ ke order
             if ($indexOrder !== false) {
-                // Tambahkan jumlah_bahan RFQ ke jumlah_bahan pada Order
                 $jumlahBahanOrder[$indexOrder] += $jumlahBahanRFQ;
             }
 
-            // Simpan perubahan pada Order
             $order->jumlah_bahan = $jumlahBahanOrder;
             $order->save();
         }
 
-        // Ubah status RFQ menjadi 'Waiting Bills'
         $rfq->status = 'Waiting Bills';
         $rfq->save();
 
-        return redirect()->back()->with('success', 'Status Berhasil di Ubah!');
+        return redirect()->back()->with('success', 'Status Berhasil diubah!');
     }
 
+    /**
+     * Cetak RFQ.
+     *
+     * @param  int  $id_rfq
+     * @return \Illuminate\Http\Response
+     */
     public function cetak($id_rfq)
     {
         $rfq = RFQ::find($id_rfq);
-        return view('purchase.rfq.rfq-cetak', compact('rfq'));
-    }
+        
+        if (!$rfq) {
+            return redirect()->route('purchase.rfq')->with('error', 'RFQ tidak ditemukan.');
+        }
 
+        return view('purchase.rfq.cetak-rfq', compact('rfq'));
+    }
 }

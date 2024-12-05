@@ -33,11 +33,11 @@ class SOController extends Controller
     public function store(Request $request)
 {
     try {
-        // Validasi data yang diterima dari form
+        // Validasi input
         $validatedData = $request->validate([
-            'id_quotation' => 'required|exists:quotations,id', // Pastikan id_quotation ada di tabel quotations
-            'id_customer_individual' => 'required|exists:customer_individuals,id', // Cek id_customer_individual di tabel customer_individuals
-            'id_customer_company' => 'nullable|exists:customer_companies,id', // Cek id_customer_company di tabel customer_companies (opsional)
+            'id_quotation' => 'required|exists:quotations,id',
+            'id_customer_individual' => 'required|exists:customer_individuals,id',
+            'id_customer_company' => 'nullable|exists:customer_companies,id',
             'customer' => 'required|string|max:255',
             'expiration' => 'required|date',
             'nama_produk' => 'required|string|max:255',
@@ -46,32 +46,18 @@ class SOController extends Controller
             'total_biaya' => 'required|numeric',
         ]);
 
-        // Buat instance baru dari model SO dan simpan data
-        $tbOrder = new SO();
-        $tbOrder->id_quotation = $validatedData['id_quotation'];
-        $tbOrder->id_customer_individual = $validatedData['id_customer_individual'];
-        $tbOrder->id_customer_company = $validatedData['id_customer_company'] ?? null; // Pastikan kolom ini nullable
-        $tbOrder->customer = $validatedData['customer'];
-        $tbOrder->expiration = $validatedData['expiration'];
-        $tbOrder->nama_produk = $validatedData['nama_produk'];
-        $tbOrder->jumlah = $validatedData['jumlah'];
-        $tbOrder->satuan_biaya = $validatedData['satuan_biaya'];
-        $tbOrder->total_biaya = $validatedData['total_biaya'];
+        // Simpan data ke tabel SO
+        $salesOrder = new SO();
+        $salesOrder->fill($validatedData); // Menggunakan Mass Assignment
+        $salesOrder->save();
 
-        // Simpan data ke database
-        $tbOrder->save();
-
-        // Redirect ke halaman sukses
-        return redirect()->route('sales.SO')->with('success', 'Data berhasil disimpan.');
-
+        return redirect()->route('sales.SO')->with('success', 'Sales Order berhasil disimpan.');
     } catch (\Exception $e) {
-        // Log error untuk debugging
-        \Log::error('Gagal menyimpan Sales Order: ' . $e->getMessage());
-
-        // Redirect kembali dengan pesan error
+        Log::error('Gagal menyimpan Sales Order: ' . $e->getMessage());
         return redirect()->back()->withErrors('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
     }
 }
+
 
     // Menampilkan detail SO
     public function show($id)

@@ -199,21 +199,64 @@ Route::put('sales/quotation/quotation/update/{id}', [quotationController::class,
 Route::delete('sales/quotation/quotation/delete/{id}', [quotationController::class, 'destroy'])->name('quotation-delete');
 Route::get('sales/quotation/quotation-cetak/{id}', [quotationController::class, 'cetak'])->name('quotation.cetak');
 
-// SalesOrder
+// // SalesOrder
+// Route::get('sales/order', [SOController::class, 'index'])->name('sales.SO');
+// Route::get('sales/order/create-SO', [SOController::class, 'create'])->name('SO.create');
+// Route::get('sales/order/create-SO/{id}', [SOController::class, 'createWithQuotation'])->name('SO.createWithQuotation');
+// // Route::post('sales/order/create-SO/store', [SOController::class, 'store'])->name('SO.store');
+// Route::post('/create-SO/store', [SOController::class, 'store'])->name('SO.store'); // Proses penyimpanan Sales Order
+// Route::get('sales/order/detail-SO/{id}', [SOController::class, 'show'])->name('SO.show');
+// Route::post('sales/order/{id}/konfirmasi', [quotationController::class, 'konfirmasi'])->name('SO.konfirmasi');
+// Route::post('sales/order/{id}/nothingtobills', [quotationController::class, 'nothingToBills'])->name('SO.nothingToBills');
+// Route::post('sales/order/{id}/salesOrder', [quotationController::class, 'salesOrder'])->name('SO.salesOrder');
+// Route::post('/order/{id_order}/selesai', [quotationController::class, 'selesai'])->name('selesai.SO');
+// Route::get('sales/order/SO/update/{id}', [SOController::class, 'edit'])->name('SO-update');
+// Route::put('sales/order/SO/update/{id}', [SOController::class, 'update'])->name('SO-update');
+// Route::delete('sales/order/SO/delete/{id}', [SOController::class, 'destroy'])->name('SO-delete');
+// Route::post('sales/order/{id}/createSO', [SOController::class, 'createSO'])->name('SO.createSO');
+// Route::get('sales/order/SO-cetak/{id}', [SOController::class, 'cetak'])->name('SO.cetak');
+// Route::get('sales/order/search', [OrderController::class, 'search'])->name('SO.search');
+// Route::get('get_quotation_data/{id}', [OrderController::class, 'getQuotationData']);
+// Sales Order Routes
 Route::get('sales/order', [SOController::class, 'index'])->name('sales.SO');
-Route::get('sales/order/create-SO', [SOController::class, 'create'])->name('SO.create');
-Route::get('sales/order/create-SO/{id}', [SOController::class, 'createWithQuotation'])->name('SO.createWithQuotation');
-// Route::post('sales/order/create-SO/store', [SOController::class, 'store'])->name('SO.store');
-Route::post('/create-SO/store', [SOController::class, 'store'])->name('SO.store'); // Proses penyimpanan Sales Order
-Route::get('sales/order/detail-SO/{id}', [SOController::class, 'show'])->name('SO.show');
-Route::post('sales/order/{id}/konfirmasi', [quotationController::class, 'konfirmasi'])->name('SO.konfirmasi');
-Route::post('sales/order/{id}/nothingtobills', [quotationController::class, 'nothingToBills'])->name('SO.nothingToBills');
-Route::post('sales/order/{id}/salesOrder', [quotationController::class, 'salesOrder'])->name('SO.salesOrder');
-Route::post('/order/{id_order}/selesai', [quotationController::class, 'selesai'])->name('selesai.SO');
-Route::get('sales/order/SO/update/{id}', [SOController::class, 'edit'])->name('SO-update');
-Route::put('sales/order/SO/update/{id}', [SOController::class, 'update'])->name('SO-update');
-Route::delete('sales/order/SO/delete/{id}', [SOController::class, 'destroy'])->name('SO-delete');
-Route::post('sales/order/{id}/createSO', [SOController::class, 'createSO'])->name('SO.createSO');
-Route::get('sales/order/SO-cetak/{id}', [SOController::class, 'cetak'])->name('SO.cetak');
+Route::get('sales/order/create', [SOController::class, 'create'])->name('SO.create');
+Route::get('sales/order/create/{id}', [SOController::class, 'createWithQuotation'])->name('SO.createWithQuotation');
+
+// Proses penyimpanan Sales Order
+Route::post('sales/order/store', [SOController::class, 'store'])->name('SO.store');
+
+// Menampilkan detail Sales Order
+Route::get('sales/order/{id}', [SOController::class, 'show'])->name('SO.show');
+
+// Konfirmasi Sales Order
+Route::post('sales/order/{id}/konfirmasi', [QuotationController::class, 'konfirmasi'])->name('SO.konfirmasi');
+
+// Proses untuk tidak ada tagihan (nothing to bill)
+Route::post('sales/order/{id}/nothing-to-bills', [QuotationController::class, 'nothingToBills'])->name('SO.nothingToBills');
+
+// Menyimpan Sales Order
+Route::post('sales/order/{id}/sales-order', [QuotationController::class, 'salesOrder'])->name('SO.salesOrder');
+
+// Proses selesai pada Sales Order
+Route::post('sales/order/{id}/selesai', [QuotationController::class, 'selesai'])->name('SO.selesai');
+
+// Menampilkan form update Sales Order
+Route::get('sales/order/update/{id}', [SOController::class, 'edit'])->name('SO.edit');
+
+// Update Sales Order
+Route::put('sales/order/update/{id}', [SOController::class, 'update'])->name('SO.update');
+
+// Menghapus Sales Order
+Route::delete('sales/order/delete/{id}', [SOController::class, 'destroy'])->name('SO.delete');
+
+// Proses untuk membuat Sales Order baru
+Route::post('sales/order/{id}/create-SO', [SOController::class, 'createSO'])->name('SO.createSO');
+
+// Menampilkan dan mencetak Sales Order
+Route::get('sales/order/cetak/{id}', [SOController::class, 'cetak'])->name('SO.cetak');
+
+// Pencarian Sales Order
 Route::get('sales/order/search', [OrderController::class, 'search'])->name('SO.search');
-Route::get('get_quotation_data/{id}', [OrderController::class, 'getQuotationData']);
+
+// Mengambil data Quotation berdasarkan ID
+Route::get('sales/order/quotation/{id}', [OrderController::class, 'getQuotationData'])->name('SO.getQuotationData');
