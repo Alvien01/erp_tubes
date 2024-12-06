@@ -44,7 +44,7 @@
                             <td class="text-center">{{ $orderItem->jumlah_produk }}</td>
                             <td class="text-center"> {{ $orderItem->status }}</td>
                             <td class="text-center">
-                                <a href="{{ route('manufaktur.show', ['id_order' => $orderItem->id_order]) }}">Detail</a>
+                                <a href="{{ route('manufaktur.show', ['id_order' => $orderItem->id_order]) }}" class="btn btn-primary">Detail</a>
                                 {{-- <a href="{{ route('manufaktur.edit', ['id_order' => $orderItem->id_order]) }}">Edit</a> --}}
                             </td>
                         </tr>

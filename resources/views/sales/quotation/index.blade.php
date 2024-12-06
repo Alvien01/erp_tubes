@@ -44,7 +44,7 @@
                             <td class="text-center"> {{ $quotationItem->total_biaya }}</td>
                             <td class="text-center"> {{ $quotationItem->status }}</td>
                             <td class="text-center">
-                                <a href="{{ route('quotation.show', ['id' => $quotationItem->id]) }}">Detail</a> 
+                                <a href="{{ route('quotation.show', ['id' => $quotationItem->id]) }}" class="btn btn-info text-white"><strong>Detail</strong></a> 
                                 {{-- <a href="{{ route('quotation.edit', ['id_order' => $orderItem->id_order]) }}">Edit</a>  --}}
                             </td>
                         </tr>

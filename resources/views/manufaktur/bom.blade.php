@@ -42,8 +42,8 @@
                                 <td class="text-center">{{ $bomItem->nama_kategori }}</td>
                                 <td class="text-center">{{ $bomItem->jumlah_produk }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('manufaktur.detail-bom', ['id_bom' => $bomItem->id_bom]) }}">Detail</a>
-                                    <a href="{{ route('manufaktur.bom-update', ['id_bom' => $bomItem->id_bom]) }}">Edit</a>
+                                    <a href="{{ route('manufaktur.detail-bom', ['id_bom' => $bomItem->id_bom]) }}"class="btn btn-info"><strong>Detail</strong></a>
+                                    <a href="{{ route('manufaktur.bom-update', ['id_bom' => $bomItem->id_bom]) }}"class="btn btn-warning"><strong>Edit</strong></a>
                                 </td>
                             </tr>
                         @endforeach

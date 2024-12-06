@@ -46,7 +46,7 @@
                             <td class="text-center"> {{ $orderItem->total_biaya }}</td>
                             <td class="text-center"> {{ $orderItem->status }}</td>
                             <td class="text-center">
-                                <a href="{{ route('SO.show', ['id' => $orderItem->id]) }}">Detail</a> 
+                                <a href="{{ route('SO.show', ['id' => $orderItem->id]) }} " class="btn btn-secondary">Detail</a> 
                                 {{-- <a href="{{ route('manufaktur.edit', ['id' => $orderItem->id]) }}">Edit</a>  --}}
                             </td>
                         </tr>

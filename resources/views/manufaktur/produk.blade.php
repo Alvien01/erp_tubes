@@ -18,7 +18,7 @@
             <a href="{{ route('manufaktur.create-produk') }}" class="btn btn-primary btn-sm-3">Tambah Produk</a>
         </div>
         @foreach ($produk as $index => $product)
-            <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="col-12 text-right mb-3">
                 <a href="{{ route('manufaktur.produk-detail', ['id' => $product->id_produk]) }}">
                 <div class="card mb-3" style="max-width:540px;">
     <div class="row g-0">
