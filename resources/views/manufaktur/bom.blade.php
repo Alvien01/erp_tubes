@@ -16,7 +16,7 @@
     <div class="card card-body pt-3" id="bomDataContainer">
         <div class="row">
             <div class="col-12 d-flex justify-content-end mb-3">
-                <a href="{{ route('manufaktur.create-bom') }}" class="btn btn-primary btn-sm">Tambah BoM</a>
+                <a href="{{ route('manufaktur.create-bom') }}" class="btn btn-primary btn-sm"><strong>Tambah BoM</strong></a>
             </div>
         </div>
 
