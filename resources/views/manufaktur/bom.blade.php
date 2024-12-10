@@ -16,7 +16,7 @@
     <div class="card card-body pt-3" id="bomDataContainer">
         <div class="row">
             <div class="col-12 d-flex justify-content-end mb-3">
-                <a href="{{ route('manufaktur.create-bom') }}" class="btn btn-primary btn-sm">Tambah BoM</a>
+                <a href="{{ route('manufaktur.create-bom') }}" class="btn btn-primary btn-sm"><strong>Tambah BoM</strong></a>
             </div>
         </div>
 
@@ -43,7 +43,11 @@
                                 <td class="text-center">{{ $bomItem->jumlah_produk }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('manufaktur.detail-bom', ['id_bom' => $bomItem->id_bom]) }}"class="btn btn-info"><strong>Detail</strong></a>
+<<<<<<< HEAD
                                     <a href="{{ route('manufaktur.bom-update', ['id_bom' => $bomItem->id_bom]) }}"class="btn btn-warning"><strong>Edit</strong></a>
+=======
+                                    <a href="{{ route('manufaktur.edit-bom', ['id_bom' => $bomItem->id_bom]) }}"class="btn btn-warning"><strong>Edit</strong></a>
+>>>>>>> 3-KC
                                 </td>
                             </tr>
                         @endforeach

@@ -129,7 +129,7 @@ Route::get('/get_bom_data/{id_produk}', [OrderController::class, 'getBOMData']);
 Route::get('/get_bahan_data/{bomId}', [OrderController::class, 'getBahanData']);
 
 Route::post('/order/{id_order}/konfirmasi', [OrderController::class, 'konfirmasi'])->name('konfirmasi.order');
-Route::post('/order/{id_order}/Selesai', [OrderController::class, 'Selesai'])->name('selesai.order');
+Route::post('/order/{id_order}/selesai', [OrderController::class, 'selesai'])->name('selesai.order');
 
 
 
