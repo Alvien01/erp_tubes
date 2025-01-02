@@ -8,9 +8,6 @@ use App\Models\Quotation;
 use App\Models\CustomerCompany;
 use App\Models\CustomerIndividual;
 use App\Models\SO;
-use App\Models\User;
-use App\Models\Order;
-use App\Models\Bom;
 use Illuminate\Support\Facades\Log;
 
 class SOController extends Controller
@@ -28,36 +25,75 @@ class SOController extends Controller
         $quotationList = Quotation::all();
         return view('sales.order.create-SO', compact('quotationList'));
     }
-
-    // Menyimpan data SO baru
     public function store(Request $request)
-{
-    try {
+    {
         // Validasi input
         $validatedData = $request->validate([
-            'id_quotation' => 'required|exists:quotations,id',
-            'id_customer_individual' => 'required|exists:customer_individuals,id',
-            'id_customer_company' => 'nullable|exists:customer_companies,id',
-            'customer' => 'required|string|max:255',
-            'expiration' => 'required|date',
-            'nama_produk' => 'required|string|max:255',
-            'jumlah' => 'required|integer|min:1',
-            'satuan_biaya' => 'required|numeric',
-            'total_biaya' => 'required|numeric',
-        ]);
-
-        // Simpan data ke tabel SO
+                'id_quotation' => 'required|exists:quotations,id',
+                'id_customer_individual' => 'required|exists:customer_individuals,id',
+                'id_customer_company' => 'nullable|exists:customer_companies,id',
+                'customer' => 'required|string|max:255',
+                'expiration' => 'required|date',
+                'nama_produk' => 'required|string|max:255',
+                'jumlah' => 'required|integer|min:1',
+                'satuan_biaya' => 'required|numeric',
+                'total_biaya' => 'required|numeric',
+            ]);
+    
+        // Simpan data ke dalam database
         $salesOrder = new SO();
-        $salesOrder->fill($validatedData); // Menggunakan Mass Assignment
+        $salesOrder->id_quotation = $validatedData['id_quotation'];
+        $salesOrder->id_customer_individual = $validatedData['id_customer_individual'];
+        $salesOrder->id_customer_company = $validatedData['id_customer_company'];
+        $salesOrder->customer = $validatedData['customer'];
+        $salesOrder->expiration = $validatedData['expiration'];
+        $salesOrder->nama_produk = $validatedData['nama_produk'];
+        $salesOrder->jumlah = $validatedData['jumlah'];
+        $salesOrder->satuan_biaya = $validatedData['satuan_biaya'];
+        $salesOrder->total_biaya = $validatedData['total_biaya'];
         $salesOrder->save();
-
         return redirect()->route('sales.SO')->with('success', 'Sales Order berhasil disimpan.');
-    } catch (\Exception $e) {
-        Log::error('Gagal menyimpan Sales Order: ' . $e->getMessage());
-        return redirect()->back()->withErrors('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
+        // Redirect atau memberikan respons lainnya
+        // return redirect()->route('SO.index')->with('success', 'Sales order berhasil disimpan!');
     }
-}
+    
+    // Menyimpan data SO baru
+    // public function store(Request $request)
+    // {
+    //     dd($request->all());
+    //     try {
+    //         // Validasi input
+            // $validatedData = $request->validate([
+            //     'id_quotation' => 'required|exists:quotations,id',
+            //     'id_customer_individual' => 'required|exists:customer_individuals,id',
+            //     'id_customer_company' => 'nullable|exists:customer_companies,id',
+            //     'customer' => 'required|string|max:255',
+            //     'expiration' => 'required|date',
+            //     'nama_produk' => 'required|string|max:255',
+            //     'jumlah' => 'required|integer|min:1',
+            //     'satuan_biaya' => 'required|numeric',
+            //     'total_biaya' => 'required|numeric',
+            // ]);
 
+    //         // Simpan data ke tabel SO
+    //         $salesOrder = new SO();
+    //         $salesOrder->id_quotation = $validatedData['id_quotation'];
+    //         $salesOrder->id_customer_individual = $validatedData['id_customer_individual'];
+    //         $salesOrder->id_customer_company = $validatedData['id_customer_company'];
+    //         $salesOrder->customer = $validatedData['customer'];
+    //         $salesOrder->expiration = $validatedData['expiration'];
+    //         $salesOrder->nama_produk = $validatedData['nama_produk'];
+    //         $salesOrder->jumlah = $validatedData['jumlah'];
+    //         $salesOrder->satuan_biaya = $validatedData['satuan_biaya'];
+    //         $salesOrder->total_biaya = $validatedData['total_biaya'];
+    //         $salesOrder->save();
+
+    //         return redirect()->route('sales.SO')->with('success', 'Sales Order berhasil disimpan.');
+    //     } catch (\Exception $e) {
+    //         Log::error('Gagal menyimpan Sales Order: ' . $e->getMessage());
+    //         return redirect()->back()->withErrors('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
+    //     }
+    // }
 
     // Menampilkan detail SO
     public function show($id)
@@ -77,7 +113,7 @@ class SOController extends Controller
         if (!$SO) {
             return redirect()->route('sales.order')->with('error', 'Order tidak ditemukan.');
         }
-        return view('sales.SO-update', compact('SO', 'quotationList'));
+        return view('sales.order.edit-SO', compact('SO', 'quotationList'));
     }
 
     // Memperbarui data SO
@@ -91,7 +127,7 @@ class SOController extends Controller
             'jumlah_bahan.*' => 'required|integer',
         ]);
 
-        $tbOrder = Order::find($id_order);
+        $tbOrder = SO::find($id_order);
         if (!$tbOrder) {
             return redirect()->route('manufaktur.order')->with('error', 'Order tidak ditemukan.');
         }
@@ -109,81 +145,10 @@ class SOController extends Controller
     // Menghapus SO
     public function destroy($id_order)
     {
-        $order = Order::find($id_order);
+        $order = SO::find($id_order);
         if ($order) {
             $order->delete();
         }
         return redirect()->route('manufaktur.order')->with('success', 'Data Order berhasil dihapus.');
-    }
-
-    // Metode pencarian
-    public function search(Request $request)
-    {
-        $term = $request->input('term');
-        $results = Bom::with('produk')
-            ->whereHas('produk', function ($query) use ($term) {
-                $query->where('nama_produk', 'like', '%' . $term . '%');
-            })
-            ->get();
-        return response()->json($results);
-    }
-
-    // Mengambil data BOM
-    public function getBomData()
-    {
-        $bomList = Bom::all();
-        return response()->json($bomList);
-    }
-
-    // Mengambil data bahan berdasarkan ID BOM
-    public function getBahanData($bomId)
-    {
-        $bom = Bom::find($bomId);
-        if (!$bom) {
-            return response()->json(['error' => 'BOM not found'], 404);
-        }
-        $namaBahanArray = json_decode($bom->nama_bahan, true);
-        $jumlahBahanArray = json_decode($bom->jumlah_bahan, true);
-
-        $bahanData = [];
-        for ($i = 0; $i < count($namaBahanArray); $i++) {
-            $bahanData[] = [
-                'nama_bahan' => $namaBahanArray[$i],
-                'jumlah_bahan' => $jumlahBahanArray[$i],
-            ];
-        }
-
-        return response()->json($bahanData);
-    }
-
-    // Konfirmasi order
-    public function konfirmasi($id_order)
-    {
-        $order = Order::find($id_order);
-        if (!$order) {
-            return redirect()->back()->with('error', 'Order not found');
-        }
-        $order->status = 'Konfirmasi';
-        $order->save();
-        return redirect()->back()->with('success', 'Status berubah Terkorfirmasi');
-    }
-
-    // Tandai order sebagai selesai
-    public function selesai($id_order)
-    {
-        $order = Order::find($id_order);
-        if (!$order) {
-            return redirect()->back()->with('error', 'Order not found');
-        }
-        $order->status = 'Selesai';
-        $order->save();
-        return redirect()->back()->with('success', 'Status berubah Selesai');
-    }
-
-    // Cetak SO
-    public function cetak($id)
-    {
-        $order = SO::find($id);
-        return view('sales.order.SO-cetak', compact('order'));
     }
 }

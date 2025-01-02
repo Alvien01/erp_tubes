@@ -19,11 +19,9 @@
         <a href="{{ route('manufaktur.create-bahan') }}" class="btn btn-primary btn-sm-3">Tambah Bahan</a>
     </div>
     <br>
-    <!-- <a href="{{ route('manufaktur.create') }}" class="btn btn-primary btn-sm ml-auto">Tambah Bahan</a> -->
         @foreach ($bahan as $bahanItem)
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{ route('manufaktur.bahan-detail', ['id' => $bahanItem->id_bahan]) }}">
-                    <!-- {{route('manufaktur.bahan-detail', ['id' => $bahanItem->id_bahan])}} -->
                     <div class="card mb-3" style="max-width:540px;">
                         <div class="row g-0">
                             <div class="m-auto col-md-4 col-sm-6 sm-m-auto text-center">

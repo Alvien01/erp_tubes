@@ -78,30 +78,21 @@ Route::get('/manufaktur/bom', [BomController::class, 'index'])->name('manufaktur
 
 // Menampilkan detail BoM
 Route::get('/manufaktur/bom', [BomController::class, 'index'])->name('manufaktur.bom');
-
 // Route untuk menampilkan detail BoM berdasarkan ID
 Route::get('/manufaktur/detail-bom/{id_bom}', [BomController::class, 'detailbom'])->name('manufaktur.detail-bom');
-
 // Route::post('/manufaktur/simpan-bom', [BomController::class, 'simpanBOM'])->name('manufaktur.simpan-bom');
 Route::post('/manufaktur/simpan-bom', [BomController::class, 'simpanBom'])->name('simpan-bom');
-
 // Route untuk menambahkan BoM
 Route::get('/manufaktur/create-bom', [BomController::class, 'create'])->name('manufaktur.create-bom');
-
 // Route untuk mengedit BoM
-Route::get('/manufaktur/edit-bom/{id_bom}', [BomController::class, 'editBom'])->name('manufaktur.bom-update');
-
+Route::put('/manufaktur/edit-bom/{id_bom}', [BomController::class, 'editBom'])->name('manufaktur.bom-update');
 // Route untuk mengupdate BoM
 Route::put('/manufaktur/bom-update/{id_bom}', [BomController::class, 'updateBom'])->name('manufaktur.bom-update');
-
 // Route untuk menghapus BoM
 Route::delete('/manufaktur/bom-detail/{id}', [BomController::class, 'destroy'])->name('manufaktur.bom-detail.destroy');
-
 //Edit njopok data option value
-Route::get('/get-bom/{id_bom}', [BomController::class, 'getBomById'])->name('get-bom');
-
-Route::get('/manufaktur/edit-bom/{id_bom}', [BomController::class, 'editBom'])->name('manufaktur.edit-bom');
-
+Route::put('/get-bom/{id_bom}', [BomController::class, 'getBomById'])->name('get-bom');
+Route::put('/manufaktur/edit-bom/{id_bom}', [BomController::class, 'editBom'])->name('manufaktur.edit-bom');
 //Order
 // Route::get('/manufaktur/order', [OrderController::class, 'index'])->name('manufaktur.order');
 

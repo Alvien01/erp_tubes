@@ -3,9 +3,10 @@
 @section('title', 'Manufaktur')
 
 @section('pageTitle', 'Manufaktur')
-@section('pageSubTitle', 'Data Produk')
+@section('pageSubTitle', 'Data Bahan')
 
 @section('content')
+    {{-- Success Alert --}}
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle me-1"></i>
@@ -13,52 +14,58 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <div class="row">
-        <div class="col-12 text-right mb-3">
-            <a href="{{ route('manufaktur.create-produk') }}" class="btn btn-primary btn-sm-3">Tambah Produk</a>
-        </div>
-        @foreach ($produk as $index => $product)
-            <div class="col-12 text-right mb-3">
-                <a href="{{ route('manufaktur.produk-detail', ['id' => $product->id_produk]) }}">
-                <div class="card mb-3" style="max-width:540px;">
-    <div class="row g-0">
-        <div class="m-auto col-md-4 col-sm-6 sm-m-auto text-center">
-            @if ($product->gambar_produk)
-                <img src="{{ asset('images/produk/' . $product->gambar_produk) }}" alt="Gambar Produk" 
-                     style="width: 100%; height: 100%; object-fit: cover;">
-            @endif
-        </div>
+
+    {{-- Button to Add New Product --}}
+    <div class="mb-4">
+        <a href="{{ route('manufaktur.create-produk') }}" class="btn btn-primary">
+            <strong>Tambah Produk</strong>
+        </a>
     </div>
-</div>
 
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title m-0">{{ $product->nama_produk }}</h5>
-                                    <p class="card-text m-0">[{{ $product->internal_referensi }}]</p>
-                                    <p class="card-text m-0"><small class="text-muted">Harga : Rp {{ $product->harga_produksi }}</small></p>
-
-                                    {{-- Tampilkan jumlah_produk berdasarkan status --}}
-                                    @php
-                                        $status = $orderStatuses[$index];
-                                    @endphp
-                                    <p class="card-text m-0">
-                                        <small class="text-muted"> 
-                                            @if ($status == 'Selesai')
-                                                On Hand : {{ $orderQuantities[$index] }}
-                                            @else
-                                                {{ $status == 'Draft' ? '0' : '0' }}
-                                            @endif
-                                        </small>
-                                    </p>
-                                </div>
+    {{-- Product Grid Layout --}}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach ($produk as $index => $product)
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <a href="{{ route('manufaktur.produk-detail', ['id' => $product->id_produk]) }}" 
+                   class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm">
+                        {{-- Product Image --}}
+                        @if ($product->gambar_produk)
+                            <img src="{{ asset('images/produk/' . $product->gambar_produk) }}" class="card-img-top img-fluid"  style="height: 150px; object-fit: cover;" alt="Gambar Produk">
+                        @else
+                            <div class="text-center py-5 bg-light">
+                                <i class="bi bi-image" style="font-size: 50px;"></i>
                             </div>
+                        @endif
+
+                        {{-- Product Details --}}
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">{{ $product->nama_produk }}</h5>
+                            <p class="card-text">[{{ $product->internal_referensi }}]</p>
+                            <p class="card-text text-muted mb-1">
+                                Harga: Rp {{ number_format($product->harga_produksi, 0, ',', '.') }}
+                            </p>
+
+                            {{-- Product Status and Quantity --}}
+                            @php
+                                $status = $orderStatuses[$index];
+                            @endphp
+                            <p class="card-text text-muted">
+                                @if ($status == 'Selesai')
+                                    On Hand: {{ $orderQuantities[$index] }}
+                                @else
+                                    On Hand: 0
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </a>
             </div>
         @endforeach
-        <div class="d-flex justify-content-center mt-4">
-                    {{ $produk->links('pagination::bootstrap-4') }}
-                </div>
+    </div>
+
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-center mt-4">
+        {{ $produk->links('pagination::bootstrap-4') }}
     </div>
 @endsection
